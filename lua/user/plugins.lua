@@ -84,6 +84,9 @@ return packer.startup(function(use)
   -- Linting
   use 'mfussenegger/nvim-lint'
 
+  -- File system explorer
+  use 'preservim/nerdtree'
+
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   if PACKER_BOOTSTRAP then
