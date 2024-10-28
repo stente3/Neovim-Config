@@ -1,23 +1,3 @@
--- -- Cargar Harpoon
--- local harpoon = require("harpoon")
---
--- -- Configuración de Harpoon
--- harpoon.setup({
---   menu = {
---     width = 40, -- Ancho del menú de Harpoon
---   },
--- })
---
--- -- Añadir un archivo actual a Harpoon
--- vim.api.nvim_set_keymap('n', '<leader>a', ':lua require("harpoon.mark").add_file() print("Archivo añadido a Harpoon")<CR>', { noremap = true, silent = true })
---
--- -- Abrir la interfaz de usuario de Harpoon
--- vim.api.nvim_set_keymap('n', '<leader>m', ':lua require("harpoon.ui").toggle_quick_menu() print("Menú de Harpoon abierto")<CR>', { noremap = true, silent = true })
---
--- -- Navegar a los archivos marcados
--- for i = 1, 4 do
---   vim.api.nvim_set_keymap('n', '<leader>' .. i, ':lua require("harpoon.ui").nav_file(' .. i .. ') print("Navegando al archivo ' .. i .. '")<CR>', { noremap = true, silent = true })
--- end
 -- Cargar Harpoon
 local harpoon = require("harpoon")
 
