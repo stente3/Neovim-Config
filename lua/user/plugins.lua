@@ -76,6 +76,14 @@ return packer.startup(function(use)
   -- Harpoon
   use 'ThePrimeagen/harpoon'
 
+  -- Formatting
+  use({
+    "stevearc/conform.nvim",
+  })
+
+  -- Linting
+  use 'mfussenegger/nvim-lint'
+
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   if PACKER_BOOTSTRAP then
