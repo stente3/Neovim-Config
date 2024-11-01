@@ -30,7 +30,7 @@ local options = {
   numberwidth = 4,                         -- set number column width to 2 {default 4}
   signcolumn = "yes",                      -- always show the sign column, otherwise it would shift the text each time
   wrap = false,                            -- display lines as one long line
-  scrolloff = 8,                           -- is one of my fav
+  scrolloff = 5,
   sidescrolloff = 8,
   guifont = "monospace:h17",               -- the font used in graphical neovim applications
 }
@@ -52,5 +52,35 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   callback = function()
     vim.highlight.on_yank()
   end,
+})
+
+-- Startup Screen
+-- Guardar el valor original de scrolloff
+local original_scrolloff = vim.wo.scrolloff
+
+-- Establecer scrolloff a 0 al abrir Startify
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = "startify",
+    callback = function()
+        vim.wo.scrolloff = 0
+    end,
+})
+
+-- Restaurar el valor original al salir de Startify
+vim.api.nvim_create_autocmd("BufLeave", {
+    pattern = "*",
+    callback = function()
+        if vim.bo.filetype == "startify" then
+            vim.wo.scrolloff = original_scrolloff
+        end
+    end,
+})
+
+-- Mover el cursor a la primera línea al abrir Startify
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = "startify",
+    callback = function()
+        vim.cmd("normal! gg")
+    end,
 })
 
