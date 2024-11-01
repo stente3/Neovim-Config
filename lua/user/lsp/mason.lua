@@ -6,6 +6,8 @@ local servers = {
 	"bashls",
 	"jsonls",
 	"yamlls",
+  "tailwindcss",
+  "emmet_ls",
 }
 
 local settings = {
