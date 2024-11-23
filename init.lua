@@ -1,10 +1,3 @@
-require "user.options"
-require "user.keymaps"
-require "user.plugins"
-require "user.colorscheme"
-require "user.lsp"
-require "user.settings.cmp"
-require "user.settings.telescope"
-require "user.settings.harpoon"
-require "user.settings.formatting"
-require "user.settings.linting"
+require("config.lazy")
+require("config.options")
+require("config.keymaps")
