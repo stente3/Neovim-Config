@@ -15,7 +15,7 @@ conform.setup({
 		markdown = { "prettier" },
 		graphql = { "prettier" },
 		liquid = { "prettier" },
-		lua = { "stylua" },
+		lua = { "lua_ls" },
 		python = { "isort", "black" },
 	},
 })

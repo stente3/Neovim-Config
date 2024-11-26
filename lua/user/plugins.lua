@@ -93,6 +93,14 @@ return packer.startup(function(use)
 	-- Startup Screen
   use 'mhinz/vim-startify'
 
+  -- Oil (file explorer)
+  use({
+    "stevearc/oil.nvim",
+    config = function()
+      require("oil").setup()
+    end,
+  })
+
 	-- Automatically set up your configuration after cloning packer.nvim
 	-- Put this at the end after all plugins
 	if PACKER_BOOTSTRAP then
