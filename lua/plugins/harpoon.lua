@@ -1,35 +1,68 @@
 return {
-    "ThePrimeagen/harpoon",
-    config = function()
-        -- Verificar que Harpoon se cargue correctamente
-        local harpoon_status_ok, harpoon = pcall(require, "harpoon")
-        if not harpoon_status_ok then
-            return
-        end
+  "ThePrimeagen/harpoon",
+  dependencies = { "nvim-lua/plenary.nvim" },
+  config = function()
+    -- Configuración de Harpoon
+    require("harpoon").setup({
+      menu = {
+        width = 60, -- Ancho del menú de Harpoon
+      },
+    })
+  end,
+  keys = (function()
+    local keys = {
+      -- Añadir un archivo actual a Harpoon
+      {
+        "<leader>a",
+        function()
+          require("harpoon.mark").add_file()
+          vim.notify("Archivo añadido a Harpoon")
+        end,
+        desc = "Añadir archivo a Harpoon",
+      },
 
-        -- Configuración de Harpoon
-        harpoon.setup({
-            menu = {
-                width = 60, -- Ancho del menú de Harpoon
-            },
-        })
+      -- Abrir la interfaz de usuario de Harpoon
+      {
+        "<leader>m",
+        function()
+          require("harpoon.ui").toggle_quick_menu()
+          vim.notify("Menú de Harpoon abierto")
+        end,
+        desc = "Abrir menú de Harpoon",
+      },
 
-        -- Añadir un archivo actual a Harpoon
-        vim.api.nvim_set_keymap('n', '<leader>a', ':lua require("harpoon.mark").add_file() vim.notify("Archivo añadido a Harpoon")<CR>', { noremap = true, silent = true })
+      -- Navegar al archivo siguiente en Harpoon
+      {
+        "<leader>l",
+        function()
+          require("harpoon.ui").nav_next()
+          vim.notify("Navegando al archivo siguiente en Harpoon")
+        end,
+        desc = "Archivo siguiente",
+      },
 
-        -- Abrir la interfaz de usuario de Harpoon
-        vim.api.nvim_set_keymap('n', '<leader>m', ':lua require("harpoon.ui").toggle_quick_menu() vim.notify("Menú de Harpoon abierto")<CR>', { noremap = true, silent = true })
+      -- Navegar al archivo anterior en Harpoon
+      {
+        "<leader>h",
+        function()
+          require("harpoon.ui").nav_prev()
+          vim.notify("Navegando al archivo anterior en Harpoon")
+        end,
+        desc = "Archivo anterior",
+      },
+    }
 
-        -- Navegar a los archivos marcados
-        for i = 1, 4 do
-            vim.api.nvim_set_keymap('n', '<leader>' .. i, ':lua require("harpoon.ui").nav_file(' .. i .. ') vim.notify("Navegando al archivo ' .. i .. '")<CR>', { noremap = true, silent = true })
-        end
+    -- Añadir navegación dinámica para <leader>1 a <leader>9
+    for i = 1, 9 do
+      table.insert(keys, {
+        "<leader>" .. i,
+        function()
+          require("harpoon.ui").nav_file(i)
+        end,
+        desc = "Navegar al archivo " .. i,
+      })
+    end
 
-        -- Navegar al archivo siguiente en Harpoon
-        vim.api.nvim_set_keymap('n', '<leader>l', ':lua require("harpoon.ui").nav_next() vim.notify("Navegando al archivo siguiente en Harpoon")<CR>', { noremap = true, silent = true })
-
-        -- Navegar al archivo anterior en Harpoon
-        vim.api.nvim_set_keymap('n', '<leader>h', ':lua require("harpoon.ui").nav_prev() vim.notify("Navegando al archivo anterior en Harpoon")<CR>', { noremap = true, silent = true })
-    end,
+    return keys
+  end)(),
 }
-
