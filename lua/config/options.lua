@@ -3,3 +3,6 @@
 -- Add any additional options here
 local opt = vim.opt
 opt.clipboard = "unnamedplus" -- Sync with system clipboard
+
+-- LazyVim auto format
+vim.g.autoformat = false
