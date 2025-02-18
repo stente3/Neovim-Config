@@ -6,3 +6,6 @@ opt.clipboard = "unnamedplus" -- Sync with system clipboard
 
 -- LazyVim auto format
 vim.g.autoformat = false
+
+-- Increase updatetime
+vim.o.updatetime = 500
